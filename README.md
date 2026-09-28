@@ -34,10 +34,10 @@ Chromium
 
 ## ▶️ Ejecución de las Pruebas
 **Para ejecutar todas las pruebas:**
-python3 -m pytest tests/test_saucedemo.py -s
+.venv/bin/python3 -m pytest tests/test_saucedemo.py -s
 
 **Para generar un reporte HTML:**
-python3 -m pytest tests/test_saucedemo.py -s -v --html=reporte.html
+.venv/bin/python3 -m pytest tests/test_saucedemo.py -s -v --html=reports/reporte.html
 
 ## ✅ Funcionalidades Implementadas
 

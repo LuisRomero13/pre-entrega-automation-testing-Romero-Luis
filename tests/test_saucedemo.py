@@ -43,7 +43,7 @@ def test_login_incorrecto(driver):
     abrir_saucedemo(driver)
  
     # Intentar iniciar sesión con credenciales incorrectas
-    realizar_login(driver, "usuario_incorrecto", "contrasena_incorrecta")
+    realizar_login(driver, "locked_out_user", "secret_sauce")
 
     # Tomamos una captura de pantalla del error
     take_screenshot(driver, "captura2.png")
