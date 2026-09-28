@@ -39,6 +39,16 @@ Valida título
 Valida presencia de productos 
 Lista nombre/precio del primero.
 
+# Interacción con productos: (Clase 8)
+Caso de prueba de carrito:
+Añadir un producto al carrito haciendo clic en el botón correspondiente
+Verificar que el contador del carrito se incremente correctamente
+Navegar al carrito de compras
+Comprobar que el producto añadido aparezca correctamente en el carrito
+Criterios mínimos:
+Agrega primer producto 
+Verifica ítem en carrito.
+
 # Repositorio en GitHub:
 Subí el proyecto a un repositorio en GitHub
 Realizá commits frecuentes y con mensajes descriptivos que muestren el progreso del proyecto

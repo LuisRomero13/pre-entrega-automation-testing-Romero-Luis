@@ -24,7 +24,7 @@ def realizar_login(driver, usuario, contraseña):
     campo_usuario.send_keys(usuario) 
     campo_contraseña = driver.find_element(By.ID, "password") 
     campo_contraseña.send_keys(contraseña) 
-    take_screenshot(driver, "captura2.png")
+    print('Usuario y contraseña ingresados →', usuario, contraseña)
     boton_login = driver.find_element(By.CSS_SELECTOR, 'input[type="submit"]')
     boton_login.click() 
 

@@ -62,8 +62,9 @@ python3 -m pytest tests/test_saucedemo.py -s -v --html=reporte.html
 ## ✨ Características Adicionales
 Capturas de pantalla automáticas, conformandose asi estos archivos:
    - **captura.png:** carga exitosamente a la página de sauce demo
-   - **captura2.png:** relleno de formulario de sesion correctamente
+   - **captura2.png:** relleno de formulario de sesion incorrectamente
    - **captura3.png:** redirección a la pagina de productos luego de iniciar sesion
+   - **captura4.png:** redirección a la pagina de carrito luego de agregar un producto
 
 Funciones auxiliares reutilizables: En el archivo funciones_saucedemo.py.
 

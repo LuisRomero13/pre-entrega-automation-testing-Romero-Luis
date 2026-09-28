@@ -38,6 +38,21 @@ def test_login_exitoso(driver):
     assert titulo.text == "Products"
     print('Título de sección OK →', titulo.text)
 
+# Verifica que un usuario no pueda iniciar sesión con credenciales incorrectas. (ACTIVIDAD 1)
+def test_login_incorrecto(driver):
+    abrir_saucedemo(driver)
+ 
+    # Intentar iniciar sesión con credenciales incorrectas
+    realizar_login(driver, "usuario_incorrecto", "contrasena_incorrecta")
+
+    # Tomamos una captura de pantalla del error
+    take_screenshot(driver, "captura2.png")
+
+    # Verificar que aparezca un mensaje de error
+    mensaje_error = driver.find_element(By.CSS_SELECTOR, 'h3[data-test="error"]')
+    assert mensaje_error.is_displayed()
+    print('Mensaje de error:', mensaje_error.text)
+
 # Verifica que el catálogo de productos se muestre correctamente. (ACTIVIDAD 2)
 def test_catalogo_y_elementos(driver):
     abrir_saucedemo(driver)
@@ -67,6 +82,31 @@ def test_catalogo_y_elementos(driver):
     assert filtro.is_displayed()
     carrito = driver.find_element(By.CLASS_NAME, "shopping_cart_link")
     assert carrito.is_displayed()
+
+# Verifica que un usuario pueda agregar un producto al carrito y que este se actualice correctamente. (ACTIVIDAD 3)
+def test_carrito(driver):
+    abrir_saucedemo(driver)
+
+    # Inicia sesión con credenciales válidas
+    iniciar_sesion(driver)
+
+    # Agregar el primer producto al carrito
+    primer_producto = driver.find_element(By.CLASS_NAME, "inventory_item")
+    boton_agregar = primer_producto.find_element(By.ID, "add-to-cart-sauce-labs-backpack")
+    boton_agregar.click()
+
+    # Verificar que el carrito tenga 1 artículo
+    carrito = driver.find_element(By.CLASS_NAME, "shopping_cart_badge")
+    assert carrito.text == "1"
+    print('Carrito actualizado correctamente con 1 artículo.')
+
+    # Navegar al carrito y verificar que el producto esté presente
+    carrito.click()
+    take_screenshot(driver, "captura4.png")
+    producto_en_carrito = driver.find_element(By.CLASS_NAME, "cart_item")
+    nombre_producto_carrito = producto_en_carrito.find_element(By.CLASS_NAME, "inventory_item_name").text
+    assert nombre_producto_carrito == "Sauce Labs Backpack"
+    print(f'Producto en carrito: {nombre_producto_carrito}')
 
 # Función auxiliar para realizar el login desde los tests que lo necesiten.
 def iniciar_sesion(driver):
