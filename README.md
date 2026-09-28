@@ -20,6 +20,7 @@ pre-entrega-automation-testing-Romero-Luis/
 ├── tests/test_saucedemo.py # Casos de prueba automatizados correspondientes a las consignas
 ├── utils/funciones_saucedemo.py # funciones auxiliares reutilizables
 ├── screenshots/ # Capturas de pantalla (se crea automáticamente)
+├── reports/ # el reporte en html y png junto con el log de ejecucion de tdodos los test
 └── extras/ # NO PERTENECE a la pre-entrega pero util para mi aprendizaje con python
 ```
 ## ⚙️ Instalación de Dependencias
