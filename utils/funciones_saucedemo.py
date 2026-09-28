@@ -1,12 +1,22 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service
 
 URL_SAUCEDEMO = "https://www.saucedemo.com/" 
 
 # Abre la página principal de SauceDemo.
 def abrir_saucedemo(driver): 
         driver.get('https://www.saucedemo.com') 
+
+def opciones_chrome():
+    opciones = Options()
+    opciones.add_argument("--headless")  # Ejecutar en modo headless (sin interfaz gráfica)
+    opciones.add_argument("--disable-dev-shm-usage")  # Evitar problemas de memoria compartida
+    opciones.binary_location = "/snap/chromium/current/usr/lib/chromium-browser/chrome"  # Ruta del binario de Chrome
+    servicio = Service(executable_path="/usr/bin/chromedriver")  # Ruta del controlador de Chrome
+    return opciones, servicio
 
 # Completa el formulario de login con las credenciales recibidas.
 def realizar_login(driver, usuario, contraseña): 
@@ -20,16 +30,11 @@ def realizar_login(driver, usuario, contraseña):
 
 # Espera hasta que la página de inventario esté cargada.
 def esperar_inventario(driver): 
-    WebDriverWait(driver, 10).until( EC.url_contains("/inventory.html") ) 
-    
+    WebDriverWait(driver, 10).until( EC.url_contains("/inventory.html") )
+    WebDriverWait(driver, 10).until( EC.visibility_of_element_located((By.CLASS_NAME, "inventory_item")) )
 
-"""
-Toma una captura de pantalla y la guarda.
 
-Args:
-    driver: Instancia del WebDriver
-    filename: Nombre del archivo donde guardar la captura
-"""
+# Toma una captura de pantalla y la guarda: filename: Nombre del archivo donde guardar la captura
 def take_screenshot(driver, filename):
     try:
         driver.save_screenshot(f"screenshots/{filename}")
@@ -38,9 +43,9 @@ def take_screenshot(driver, filename):
         print(f"Error al guardar la captura de pantalla: {e}")
 
 #  Obtiene el nombre y precio del primer producto visible en el catálogo.
-# def obtener_primer_producto(driver): 
-#     producto = WebDriverWait(driver, 10).until( EC.visibility_of_element_located( (By.CLASS_NAME, "inventory_item") ) ) 
+def obtener_primer_producto(driver): 
+    producto =driver.find_element(By.CLASS_NAME, "inventory_item")
     
-#     nombre = producto.find_element( By.CLASS_NAME, "inventory_item_name" ).text 
-#     precio = producto.find_element( By.CLASS_NAME, "inventory_item_price" ).text 
-#     return nombre, precio
+    nombre = producto.find_element( By.CLASS_NAME, "inventory_item_name" ).text 
+    precio = producto.find_element( By.CLASS_NAME, "inventory_item_price" ).text 
+    return nombre, precio

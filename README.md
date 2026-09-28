@@ -48,6 +48,7 @@ python3 -m pytest tests/test_saucedemo.py -s -v --html=reporte.html
 2. Verificación del Catálogo:
    - Comprobación del título de la página
    - Verificación de presencia de productos
+   - Verificion de elementos importantes de la interfaz (menu, filtro y carrito)
 
 3. Interacción con el Carrito:
    - Añadir producto al carrito
