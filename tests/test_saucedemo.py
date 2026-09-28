@@ -26,35 +26,15 @@ def driver():
     yield navegador
     navegador.quit()
 
-
-# def iniciar_sesion(driver):
-#     # Función auxiliar para realizar el login desde los tests que lo necesiten.
-#     abrir_saucedemo(driver)
-
-#     realizar_login(
-#         driver,
-#         "standard_user",
-#         "secret_sauce"
-#     )
-
-#     esperar_inventario(driver)
-
-
+# Verifica que un usuario pueda iniciar sesión correctamente.
 def test_login_exitoso(driver):
-    """ Verifica que un usuario pueda iniciar sesión correctamente. """
-    abrir_saucedemo(driver)
+    # Inicia sesión con credenciales válidas
+    iniciar_sesion(driver)
     #Leemos el título de la pestaña → debería salir "Swag Labs"
     print('Título:', driver.title)     
     #Validamos que el título sea el esperado (asegura que cargó bien) 
     assert driver.title == 'Swag Labs'  
-    take_screenshot(driver, "captura.png")
-
-    realizar_login(
-        driver,
-        "standard_user",
-        "secret_sauce"
-    )
-    esperar_inventario(driver)
+    # Tomamos una captura de pantalla del inventario
     take_screenshot(driver, "captura3.png")
     # Verificar que la URL corresponda al inventario
     assert "/inventory.html" in driver.current_url
@@ -88,3 +68,17 @@ def test_login_exitoso(driver):
 #     print(f"Precio: {precio}")
 #     assert nombre != ""
 #     assert precio != ""
+
+# Función auxiliar para realizar el login desde los tests que lo necesiten.
+def iniciar_sesion(driver):
+    abrir_saucedemo(driver)
+
+    take_screenshot(driver, "captura.png")
+
+    realizar_login(
+        driver,
+        "standard_user",
+        "secret_sauce"
+    )
+
+    esperar_inventario(driver)
